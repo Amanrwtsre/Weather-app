@@ -1,3 +1,4 @@
+
 const searchButton = document.querySelector(".search-btn");
 const cityInput = document.querySelector(".city-input");
 const weatherCardsDiv = document.querySelector(".weather-cards");
@@ -30,7 +31,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 };
 
 const getWeatherDetails = (cityName, lat, lon) => {
-    const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;  
+    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;  
     
     console.log(`Fetching weather data for: ${cityName} (Lat: ${lat}, Lon: ${lon})`); // Log the city name and coordinates
     fetch(WEATHER_API_URL)
@@ -76,7 +77,7 @@ const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
     if (!cityName) return;
 
-    const GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+    const GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
 
     console.log(`Fetching coordinates for city: ${cityName}`); // Log the city name
     fetch(GEOCODING_API_URL)
@@ -100,7 +101,7 @@ const getUserCoordinates = () => {
             const { latitude, longitude } = position.coords;
             console.log(`User coordinates: Latitude: ${latitude}, Longitude: ${longitude}`); // Log the coordinates
 
-            const REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+            const REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
 
             console.log(`Fetching city name for coordinates: Lat: ${latitude}, Lon: ${longitude}`); // Log the reverse geocoding request
             fetch(REVERSE_GEOCODING_URL)
@@ -136,7 +137,4 @@ const getUserCoordinates = () => {
 
 searchButton.addEventListener("click", getCityCoordinates);
 locationButton.addEventListener("click", getUserCoordinates);
-
-
-
 
